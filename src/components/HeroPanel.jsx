@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { format, getYear, setYear } from 'date-fns';
+import { format, getYear, setYear, getMonth, setMonth } from 'date-fns';
 import { Sun, Moon } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -43,9 +43,21 @@ export function HeroPanel({ currentMonth, setCurrentMonth, theme, toggleTheme })
     setCurrentMonth(setYear(currentMonth, newYear));
   };
 
+  const handleMonthChange = (e) => {
+    const newMonth = parseInt(e.target.value, 10);
+    setCurrentMonth(setMonth(currentMonth, newMonth));
+  };
+
   const currentYear = getYear(currentMonth);
+  const currentMonthIndex = getMonth(currentMonth);
+  
   // Generate a list from 50 years in the past to 50 years in the future
   const years = Array.from({ length: 101 }, (_, i) => currentYear - 50 + i);
+
+  const months = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
 
   const imageUrl = getImageUrl(currentMonth.getMonth());
 
@@ -65,9 +77,20 @@ export function HeroPanel({ currentMonth, setCurrentMonth, theme, toggleTheme })
       {/* Overlay to ensure text readability */}
       <div className="hero-overlay"></div>
 
-      {/* Month Display */}
+      {/* Month & Year Display */}
       <div className="hero-content" ref={contentRef}>
-        <h1 className="hero-month">{format(currentMonth, 'MMM')}</h1>
+        <div className="month-selector-container">
+          <select 
+            className="hero-month-select"
+            value={currentMonthIndex}
+            onChange={handleMonthChange}
+            aria-label="Select Month"
+          >
+            {months.map((m, i) => (
+              <option key={i} value={i}>{m}</option>
+            ))}
+          </select>
+        </div>
         <div className="year-selector-container">
           <select 
             className="hero-year-select"

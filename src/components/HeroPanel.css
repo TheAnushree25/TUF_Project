@@ -54,12 +54,37 @@
   text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
-.hero-month {
-  font-size: 5rem;
+.month-selector-container {
+  margin-bottom: 0.5rem;
+}
+
+.hero-month-select {
+  font-family: inherit;
+  font-size: 2.5rem;
   font-weight: 700;
-  line-height: 1;
-  margin: 0;
-  letter-spacing: -2px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-sm);
+  padding: 0.25rem 1rem;
+  cursor: pointer;
+  outline: none;
+  backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+  letter-spacing: -1px;
+}
+
+.hero-month-select:hover, .hero-month-select:focus {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.hero-month-select option {
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: normal;
 }
 
 .year-selector-container {
