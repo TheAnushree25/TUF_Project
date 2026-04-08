@@ -10,11 +10,12 @@ const getImageUrl = (monthIndex) => {
   const themes = [
     'winter', 'coffee', 'spring', 'rain',
     'sunny', 'beach', 'ocean', 'forest',
-    'autumn', 'halloween', 'thanksgiving', 'christmas'
+    'autumn', 'halloween', 'leaves', 'snow'
   ];
   const theme = themes[monthIndex] || 'nature';
   // using lock prevents the image from randomly changing on re-renders, while still providing thematic images!
-  return `https://loremflickr.com/800/1200/${theme}?lock=${monthIndex + 1}`;
+  // using monthIndex + 50 to avoid the corrupted images present at indices 11 and 12 in the Flickr database
+  return `https://loremflickr.com/800/1200/${theme}?lock=${monthIndex + 50}`;
 };
 
 export function HeroPanel({ currentMonth, setCurrentMonth, theme, toggleTheme }) {
