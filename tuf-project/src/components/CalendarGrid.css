@@ -1,0 +1,143 @@
+.calendar-grid-container {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.month-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.nav-btn {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.nav-btn:hover {
+  background: var(--bg-secondary);
+}
+
+.week-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-weight: 500;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  margin-bottom: 0.75rem;
+}
+
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.25rem 0;
+}
+
+.day-cell {
+  position: relative;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  z-index: 1;
+}
+
+.day-number {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  z-index: 2;
+  transition: all 0.2s ease;
+}
+
+.day-cell:hover .day-number {
+  background-color: var(--bg-secondary);
+}
+
+.day-cell.outside-month {
+  color: var(--text-secondary);
+  opacity: 0.5;
+}
+
+.day-cell.today .day-number {
+  box-shadow: inset 0 0 0 2px var(--accent-color);
+  color: var(--accent-color);
+}
+
+/* Range Logic */
+.day-cell.in-range::before,
+.day-cell.range-start::before,
+.day-cell.range-end::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 36px;
+  background-color: var(--accent-soft);
+  z-index: -1;
+}
+
+.day-cell.in-range::before {
+  left: 0;
+  right: 0;
+}
+
+.day-cell.range-start::before {
+  left: 50%;
+  right: 0;
+}
+
+.day-cell.range-end::before {
+  left: 0;
+  right: 50%;
+}
+
+.day-cell.selected-single::before {
+  display: none; /* No range tail if single day is selected */
+}
+
+.day-cell.range-start .day-number,
+.day-cell.range-end .day-number {
+  background-color: var(--accent-color);
+  color: white;
+  box-shadow: var(--shadow-md);
+  transform: scale(1.05);
+}
+
+.day-cell.in-range .day-number {
+  color: var(--accent-hover);
+}
+
+.day-cell.in-range:hover .day-number {
+  background-color: transparent; /* allow range bg to govern hover */
+}

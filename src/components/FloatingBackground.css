@@ -1,0 +1,28 @@
+.floating-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -10;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.6;
+}
+
+/* Beautiful pastel/neon glows */
+.orb-1 { width: 50vw; height: 50vw; max-width: 600px; max-height: 600px; top: -10%; left: -10%; background: rgba(59, 130, 246, 0.4); } /* Blue */
+.orb-2 { width: 60vw; height: 60vw; max-width: 700px; max-height: 700px; bottom: -20%; right: -10%; background: rgba(139, 92, 246, 0.4); } /* Purple */
+.orb-3 { width: 40vw; height: 40vw; max-width: 500px; max-height: 500px; top: 30%; left: 60%; background: rgba(236, 72, 153, 0.3); } /* Pink */
+.orb-4 { width: 50vw; height: 50vw; max-width: 600px; max-height: 600px; bottom: 10%; left: -10%; background: rgba(16, 185, 129, 0.3); } /* Emerald */
+
+/* In dark mode, tone down the opacity slightly so they don't blind the user */
+[data-theme='dark'] .orb {
+  opacity: 0.25;
+}
